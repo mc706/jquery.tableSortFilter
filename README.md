@@ -23,6 +23,7 @@ There are a few requirements of the table:
 
 * The Header Row **must** be in a `<thead>` tag
 * Each Column Header **must** be in a `<th>` tag
+* Every `<th>` **must** have content in it
 * The All content rows **must** be in a `<tbody>` tag
 * There **must** be equal number of `<td>` tags in each row as there are `<th>` rows in the header
 * Table has to have `id=` defined. 
