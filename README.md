@@ -54,3 +54,7 @@ Options
   <tr><td>ascending_sort_class</td><td>The css class to be used the column when sorted ascending</td><td>"glyphicon glyphicon-arrow-up"</td></tr>
   <tr><td>ascending_sort_class</td><td>The css class to be used the column when sorted descending</td><td>"glyphicon glyphicon-arrow-down"</td></tr>
 </table>
+
+Demo Using Bootstrap3
+---------------------
+[Demo] (http://mc706.github.io/jquery.tableSortFilter/index.html
