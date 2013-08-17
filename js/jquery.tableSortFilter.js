@@ -35,13 +35,13 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
 
         function setupSortFilter() {
             $(options.table_selector + ' thead th').each(function () {
-                local.columns.push($(this).text());
+                local.columns.push($(this).html());
                 $(this).append("<"+options.filter_icon_element+" class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
             });
             $(options.table_selector + ' tbody tr').each(function (index, element) {
                 local.table[index] = {};
                 $(this).children('td').each(function (i, element) {
-                    local.table[index][local.columns[i]] = $(this).text();
+                    local.table[index][local.columns[i]] = $(this).html();
                 });
             });
             $(options.search_selector).keyup(function () {
@@ -49,7 +49,7 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
             });
             $('.sorter').click(function () {
                 $('.sorter').attr('class', 'sorter ' + options.non_sort_class); //resents all icons
-                var new_sort = $(this).parent().text();
+                var new_sort = $(this).parent().html();
                 if (local.sortkey == new_sort) {
                     local.sortkey = "-" + local.sortkey;
                     $(this).removeClass(options.non_sort_class).addClass(options.descending_sort_class);
