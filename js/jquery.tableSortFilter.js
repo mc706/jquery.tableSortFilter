@@ -15,6 +15,7 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
  *                                                                      (ie bootstrap 2: "icon icon-arrow-up")
  * descending_sort_class:       - classname for icon for column being sorted ascendning by:
  *                                                                      (ie bootstrap 2: "icon icon-arrow-up")
+ * debug                        - dumps all variables to console.log()
  */
 (function ($, undefined) {
     $.tableSortFilter = function (opt) {
