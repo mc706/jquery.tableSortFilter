@@ -35,7 +35,8 @@ To set a search field and table to be dynamicaly filterable and sortable, call `
 <script>
     $.tableSortFilter({
       table_selector:"#table_id",
-      search_selector:"#search_input_id",
+      search_selector:"#search_input_id"
+      filter_icon_element:"tag_name_of_icon",
       non_sort_class: "css_class_for_neutral_icon",
       ascending_sort_class: "css_class_for_ascending_icon",
       descending_sort_class: "css_class_for_descending_icon"
@@ -50,6 +51,7 @@ Options
   <tr><th>Option</th><th>Description</th><th>Example using Bootstrap3</th></tr>
   <tr><td>table_selector</td><td>The jQuery Selector for the table to be sorted</td><td>"#table"</td></tr>
   <tr><td>search_selector</td><td>The jQuery Selector for the input to filter by</td><td>"#search"</td></tr>
+  <tr><td>filter_icon_element</td><td>The element tag name for the sort icon</td><td>"span"</td></tr>
   <tr><td>non_sort_class</td><td>The css class to be used on non sorted columns</td><td>"glyphicon glyphicon-resize-vertical"</td></tr>
   <tr><td>ascending_sort_class</td><td>The css class to be used the column when sorted ascending</td><td>"glyphicon glyphicon-arrow-up"</td></tr>
   <tr><td>ascending_sort_class</td><td>The css class to be used the column when sorted descending</td><td>"glyphicon glyphicon-arrow-down"</td></tr>
