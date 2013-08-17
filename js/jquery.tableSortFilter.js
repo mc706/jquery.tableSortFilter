@@ -34,7 +34,7 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
         function setupSortFilter() {
             $(options.table_selector + ' thead th').each(function () {
                 local.columns.push($(this).text());
-                $(this).append("<i class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
+                $(this).append("<span class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
             });
             $(options.table_selector + ' tbody tr').each(function (index, element) {
                 local.table[index] = {};
