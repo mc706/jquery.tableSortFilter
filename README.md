@@ -23,10 +23,10 @@ There are a few requirements of the table:
 
 * The Header Row **must** be in a `<thead>` tag
 * Each Column Header **must** be in a `<th>` tag
-* Every `<th>` **must** have content in it
+* Every `<th>` **must** have unique content in it
 * The All content rows **must** be in a `<tbody>` tag
 * There **must** be equal number of `<td>` tags in each row as there are `<th>` rows in the header
-* Table has to have `id=` defined. 
+
 
 Initialization
 --------------
@@ -56,6 +56,7 @@ Options
   <tr><td>non_sort_class</td><td>The css class to be used on non sorted columns</td><td>"glyphicon glyphicon-resize-vertical"</td></tr>
   <tr><td>ascending_sort_class</td><td>The css class to be used the column when sorted ascending</td><td>"glyphicon glyphicon-arrow-up"</td></tr>
   <tr><td>ascending_sort_class</td><td>The css class to be used the column when sorted descending</td><td>"glyphicon glyphicon-arrow-down"</td></tr>
+  <tr><td>debug (optional)</td><td>Set to true to dump variables to console.log()</td><td>false</td></tr>
 </table>
 
 Demo Using Bootstrap3
