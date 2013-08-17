@@ -3,7 +3,7 @@ tableSortFilter is released under the MIT License <http://www.opensource.org/lic
 created by: Ryan McDevitt http://mc706.com
 */
 /*
-Table must have thead and tbody elements, and an equal amount of th elements in thead as td elements in body
+Table must have thead and tbody elements, and an equal amount of th elemnts in thead as td elements in body
  */
 /**
  * table_selector               - jquery selector for the table you wish to sort (ie "#table1")
@@ -25,12 +25,14 @@ Table must have thead and tbody elements, and an equal amount of th elements in 
             filter_icon_element: null,
             non_sort_class: null,
             ascending_sort_class: null,
-            descending_sort_class: null
+            descending_sort_class: null,
+            debug: false
         }, opt);
         var local = {
             columns: [],
             table: {},
-            sortkey: ""
+            sortkey: "",
+            html_table: {}
         };
 
         function setupSortFilter() {
@@ -38,12 +40,16 @@ Table must have thead and tbody elements, and an equal amount of th elements in 
                 local.columns.push($(this).text());
                 $(this).append("<"+options.filter_icon_element+" class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
             });
+            if (options.debug){console.log(local.columns);}
             $(options.table_selector + ' tbody tr').each(function (index, element) {
                 local.table[index] = {};
+                local.html_table[index] = $(this).clone();
                 $(this).children('td').each(function (i, element) {
                     local.table[index][local.columns[i]] = $(this).text();
                 });
             });
+            if (options.debug){console.log(local.table);}
+            if (options.debug){console.log(local.html_table);}
             $(options.search_selector).keyup(function () {
                 search();
             });
@@ -74,8 +80,8 @@ Table must have thead and tbody elements, and an equal amount of th elements in 
             if (keyword === "") {
                 output = local.table;
             }
+            if (options.debug){console.log(output);}
             sort(output);
-
         }
 
         function sort(table) {
@@ -86,6 +92,7 @@ Table must have thead and tbody elements, and an equal amount of th elements in 
                 local.sortkey = local.columns[0];
             }
             var keyword = local.sortkey;
+            if (options.debug){console.log(keyword);}
             if (local.sortkey.indexOf("-") !== -1) {
                 keyword = local.sortkey.replace('-', '');
                 reverse = true;
@@ -115,15 +122,11 @@ Table must have thead and tbody elements, and an equal amount of th elements in 
         }
 
         function redraw(table, order) {
-            var output = "";
+            $(options.table_selector + ' tbody').empty();
             $.each(order, function (n, row) {
-                output += '<tr>';
-                $.each(local.columns, function (i, key) {
-                    output += '<td>' + table[row][key] + '</td>';
-                });
-                output += '</tr>';
+                local.html_table[row].appendTo(options.table_selector + ' tbody');
             });
-            $(options.table_selector + ' tbody').empty().html(output);
+
         }
 
         setupSortFilter();
