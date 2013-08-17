@@ -57,4 +57,4 @@ Options
 
 Demo Using Bootstrap3
 ---------------------
-[Demo] (http://mc706.github.io/jquery.tableSortFilter/index.html
+[Demo] (http://mc706.github.io/jquery.tableSortFilter/index.html)
