@@ -25,31 +25,37 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
             filter_icon_element: null,
             non_sort_class: null,
             ascending_sort_class: null,
-            descending_sort_class: null
+            descending_sort_class: null,
+            debug: false
         }, opt);
         var local = {
             columns: [],
             table: {},
-            sortkey: ""
+            sortkey: "",
+            html_table: {}
         };
 
         function setupSortFilter() {
             $(options.table_selector + ' thead th').each(function () {
-                local.columns.push($(this).html());
+                local.columns.push($(this).text());
                 $(this).append("<"+options.filter_icon_element+" class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
             });
+            if (options.debug){console.log(local.columns);}
             $(options.table_selector + ' tbody tr').each(function (index, element) {
                 local.table[index] = {};
+                local.html_table[index] = $(this).clone();
                 $(this).children('td').each(function (i, element) {
-                    local.table[index][local.columns[i]] = $(this).html();
+                    local.table[index][local.columns[i]] = $(this).text();
                 });
             });
+            if (options.debug){console.log(local.table);}
+            if (options.debug){console.log(local.html_table);}
             $(options.search_selector).keyup(function () {
                 search();
             });
             $('.sorter').click(function () {
                 $('.sorter').attr('class', 'sorter ' + options.non_sort_class); //resents all icons
-                var new_sort = $(this).parent().html();
+                var new_sort = $(this).parent().text();
                 if (local.sortkey == new_sort) {
                     local.sortkey = "-" + local.sortkey;
                     $(this).removeClass(options.non_sort_class).addClass(options.descending_sort_class);
@@ -74,8 +80,8 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
             if (keyword === "") {
                 output = local.table;
             }
+            if (options.debug){console.log(output);}
             sort(output);
-
         }
 
         function sort(table) {
@@ -86,6 +92,7 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
                 local.sortkey = local.columns[0];
             }
             var keyword = local.sortkey;
+            if (options.debug){console.log(keyword);}
             if (local.sortkey.indexOf("-") !== -1) {
                 keyword = local.sortkey.replace('-', '');
                 reverse = true;
@@ -115,15 +122,11 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
         }
 
         function redraw(table, order) {
-            var output = "";
+            $(options.table_selector + ' tbody').empty();
             $.each(order, function (n, row) {
-                output += '<tr>';
-                $.each(local.columns, function (i, key) {
-                    output += '<td>' + table[row][key] + '</td>';
-                });
-                output += '</tr>';
+                local.html_table[row].appendTo(options.table_selector + ' tbody');
             });
-            $(options.table_selector + ' tbody').empty().html(output);
+
         }
 
         setupSortFilter();
