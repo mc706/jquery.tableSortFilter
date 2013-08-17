@@ -35,7 +35,7 @@ To set a search field and table to be dynamicaly filterable and sortable, call `
 <script>
     $.tableSortFilter({
       table_selector:"#table_id",
-      search_selector:"search_input_id",
+      search_selector:"#search_input_id",
       non_sort_class: "css_class_for_neutral_icon",
       ascending_sort_class: "css_class_for_ascending_icon",
       descending_sort_class: "css_class_for_descending_icon"
