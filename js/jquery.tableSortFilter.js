@@ -3,11 +3,12 @@ tableSortFilter is released under the MIT License <http://www.opensource.org/lic
 created by: Ryan McDevitt http://mc706.com
 */
 /*
-Table must have thead and tbody elements, and an equal amount of th elemnts in thead as td elements in body
+Table must have thead and tbody elements, and an equal amount of th elements in thead as td elements in body
  */
 /**
  * table_selector               - jquery selector for the table you wish to sort (ie "#table1")
  * search_selector              - jquery selector for the search field you wish to filter with (ie "#search")
+ * filter_icon_element          - name of tag to be used for the icon (ie "span", "i"))
  * non_sort_class               - classname for icon for columns not being sorted by
  *                                                                      (ie bootstrap 2: "icon icon-resize-vertical")
  * ascending_sort_class:        - classname for icon for column being sorted ascendning by:
@@ -21,6 +22,7 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
         var options = $.extend({
             table_selector: null,
             search_selector: null,
+            filter_icon_element: null,
             non_sort_class: null,
             ascending_sort_class: null,
             descending_sort_class: null
@@ -34,7 +36,7 @@ Table must have thead and tbody elements, and an equal amount of th elemnts in t
         function setupSortFilter() {
             $(options.table_selector + ' thead th').each(function () {
                 local.columns.push($(this).text());
-                $(this).append("<span class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
+                $(this).append("<"+options.filter_icon_element+" class='sorter " + options.non_sort_class + "' style='float:right;'></i>");
             });
             $(options.table_selector + ' tbody tr').each(function (index, element) {
                 local.table[index] = {};
